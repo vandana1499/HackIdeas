@@ -5,7 +5,9 @@ import Spinner from "react-bootstrap/Spinner";
 import Login from "./components/Login/Login";
 import Layout from "./components/Layout/Layout";
 import Header from "./components/Header/Header";
-import AddChallenge from "./components/Challenge/AddChallenge";
+import AddChallenge from "./components/Challenge/Add-Challenge";
+import Challenge from "./components/Challenge/Challenge";
+
 function App() {
   return (
     <React.Suspense
@@ -17,7 +19,7 @@ function App() {
     >
       <HashRouter>
         <Routes>
-          <Route exact={true} key="home" path="/" element={<Login />} />
+          <Route exact={true} key="home" path="/" element={<Challenge />} />
           <Route
             key="add-challenge"
             path="/add-challenge"
