@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Layout from "../Layout/Layout";
 import Container from "react-bootstrap/Container";
-
+import { setChallenge } from "../Utility/challengeUtils";
 const AddChallenge = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -19,6 +19,8 @@ const AddChallenge = () => {
     setTags(e.target.value);
   };
   const onSubmitHandler = (e) => {
+    e.preventDefault();
+    setChallenge(title, description, tags);
     console.log(title);
     console.log(description);
     console.log(tags);
@@ -43,7 +45,7 @@ const AddChallenge = () => {
           <Form.Group className="mb-3" controlId="description">
             <Form.Label>Description</Form.Label>
             <Form.Control
-              type="text"
+              as="textarea"
               placeholder="Describe it"
               onChange={onDescriptionHandler}
               value={description}
