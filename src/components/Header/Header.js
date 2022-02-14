@@ -25,7 +25,9 @@ const Header = () => {
               Challenge
             </Nav.Link>
           ) : null}
-          {getEmpId() ? <Nav.Link onClick={logout}>Logout</Nav.Link> : null}
+          {getEmpId() ? (
+            <Nav.Link onClick={logout}>Logout ({getEmpId()})</Nav.Link>
+          ) : null}
         </Nav>
       </Container>
     </Navbar>

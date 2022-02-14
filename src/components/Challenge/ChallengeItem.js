@@ -9,16 +9,12 @@ const ChallengeItem = ({ data }) => {
   const [vote, setVote] = useState(false);
   const [loginId, setLoginId] = useState("");
   const upvoteHandler = (data) => {
-    console.log(data);
     setUpvote(data.id, 1, loginId);
     setVote(true);
   };
   useEffect(() => {
     let Id = getEmpId();
     setLoginId(Id);
-    console.log("checkimg");
-    console.log("data upvote", data.upvote.likedBy);
-    console.log(data.upvote.likedBy.includes(loginId));
     if (data.upvote.likedBy.includes(loginId)) setVote(true);
   }, []);
   return (
