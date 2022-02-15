@@ -33,12 +33,16 @@ const ChallengeItem = ({ data }) => {
         <Card.Footer>
           <Row>
             <Col>
-              {Object.keys(data.tags).length > 0 &&
-                Object.keys(data.tags).map((tag) => (
-                  <small className="text-muted m-1" key={tag}>
-                    {tag}
-                  </small>
-                ))}
+              {data.tags &&
+                Object.keys(data.tags).length > 0 &&
+                Object.keys(data.tags).map(
+                  (tag) =>
+                    data.tags[tag] && (
+                      <small className="text-muted m-1" key={tag}>
+                        {tag}
+                      </small>
+                    )
+                )}
             </Col>
             <Col md="auto"></Col>
             <Col xs lg="1">

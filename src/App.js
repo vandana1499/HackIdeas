@@ -3,8 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { HashRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import Login from "./components/Login/Login";
-import Layout from "./components/Layout/Layout";
-import Header from "./components/Header/Header";
 import AddChallenge from "./components/Challenge/Add-Challenge";
 import Challenge from "./components/Challenge/Challenge";
 import { getEmpId } from "./components/Utility/utils";
