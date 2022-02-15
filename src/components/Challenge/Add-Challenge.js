@@ -7,7 +7,10 @@ import { setChallenge } from "../Utility/challengeUtils";
 const AddChallenge = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [tags, setTags] = useState("");
+  const [tagsObj, setTags] = useState({
+    tech: false,
+    feature: false,
+  });
 
   const onTitleHandler = (e) => {
     setTitle(e.target.value);
@@ -16,18 +19,22 @@ const AddChallenge = () => {
     setDescription(e.target.value);
   };
   const onTagsHandler = (e) => {
-    setTags(e.target.value);
+    let name = e.target.name;
+    let checked = e.target.checked;
+    let tags = { ...tagsObj };
+    tags[name] = checked;
+    setTags(tags);
   };
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    setChallenge(title, description, tags);
+    setChallenge(title, description, tagsObj);
     console.log(title);
     console.log(description);
-    console.log(tags);
-
     setTitle("");
     setDescription("");
-    setTags("");
+    let tags = { ...tagsObj };
+    Object.keys(tags).map((tag) => (tags[tag] = false));
+    setTags(tags);
   };
   return (
     <Layout>
@@ -51,14 +58,18 @@ const AddChallenge = () => {
               value={description}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="tags">
+          <Form.Group className="mb-3" id="tags">
             <Form.Label>Tags</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="tags"
-              onChange={onTagsHandler}
-              value={tags}
-            />
+            {Object.keys(tagsObj).map((tag) => (
+              <Form.Check
+                type="checkbox"
+                key={tag}
+                onChange={onTagsHandler}
+                label={tag}
+                checked={tagsObj.tag}
+                name={tag}
+              />
+            ))}
           </Form.Group>
           <Button variant="primary" type="submit">
             Submit

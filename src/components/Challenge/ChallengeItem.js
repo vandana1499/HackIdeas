@@ -5,6 +5,7 @@ import { BsFillHeartFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { setUpvote } from "../Utility/challengeUtils";
 import { getEmpId } from "../Utility/utils";
+import { nonBreakingSpace } from "charcodes";
 const ChallengeItem = ({ data }) => {
   const [vote, setVote] = useState(false);
   const [loginId, setLoginId] = useState("");
@@ -27,7 +28,11 @@ const ChallengeItem = ({ data }) => {
         <Card.Footer>
           <Row>
             <Col>
-              <small className="text-muted">{data.tags}</small>
+              {Object.keys(data.tags).map((tag) => (
+                <small className="text-muted m-1" key={tag}>
+                  {tag}
+                </small>
+              ))}
             </Col>
             <Col md="auto"></Col>
             <Col xs lg="1">
