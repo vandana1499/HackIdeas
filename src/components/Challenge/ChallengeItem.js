@@ -1,14 +1,17 @@
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Overlay from "react-bootstrap/Overlay";
+import Tooltip from "react-bootstrap/ToolTip";
 import { BsFillHeartFill } from "react-icons/bs";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { setUpvote } from "../Utility/challengeUtils";
 import { getEmpId } from "../Utility/utils";
-import { nonBreakingSpace } from "charcodes";
 const ChallengeItem = ({ data }) => {
   const [vote, setVote] = useState(false);
   const [loginId, setLoginId] = useState("");
+  const [showOverlay, setShowOverlay] = useState(false);
+  //const target = useRef(null);
   const upvoteHandler = (data) => {
     setUpvote(data.id, 1, loginId);
     setVote(true);
@@ -16,8 +19,10 @@ const ChallengeItem = ({ data }) => {
   useEffect(() => {
     let Id = getEmpId();
     setLoginId(Id);
-    if (data.upvote.likedBy.includes(loginId)) setVote(true);
-  }, []);
+    if (data.upvote.likedBy.includes(loginId)) {
+      setVote(true);
+    }
+  }, [loginId]);
   return (
     <Col>
       <Card>
@@ -37,11 +42,17 @@ const ChallengeItem = ({ data }) => {
             </Col>
             <Col md="auto"></Col>
             <Col xs lg="1">
-              <BsFillHeartFill
-                color={vote ? "red" : "grey"}
-                style={{ cursor: "pointer" }}
-                onClick={() => upvoteHandler(data)}
-              />
+              <div>
+                <BsFillHeartFill
+                  color={vote ? "red" : "grey"}
+                  style={{ cursor: "pointer" }}
+                  onClick={
+                    vote
+                      ? () => setShowOverlay(true)
+                      : () => upvoteHandler(data)
+                  }
+                />
+              </div>
             </Col>
           </Row>
         </Card.Footer>
