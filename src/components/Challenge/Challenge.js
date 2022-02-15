@@ -85,11 +85,6 @@ const Challenge = () => {
             <Row xs={1} md={2} className="g-4">
               {data.length > 0 &&
                 data.map((item) => <ChallengeItem key={item.id} data={item} />)}
-              {/*  {data.length > 0 ? (
-          data.map((item) => <ChallengeItem data={item} />)
-        ) : (
-          <h1>No data found </h1>
-        )} */}
             </Row>
           </CardGroup>
         </Row>

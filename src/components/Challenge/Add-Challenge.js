@@ -66,13 +66,7 @@ const AddChallenge = () => {
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
     } else {
-      let tags = { ...formData.tagsObj };
-      let newTags = Object.keys(tags).filter((tag) => tags[tag] == true);
-      console.log(newTags.length);
-      if (newTags.length == 0) {
-        setChallenge(formData.title, formData.description, {});
-      } else
-        setChallenge(formData.title, formData.description, formData.tagsObj);
+      setChallenge(formData.title, formData.description, formData.tagsObj);
       updateFormData(initialFormData);
       setErr("");
     }
@@ -122,7 +116,7 @@ const AddChallenge = () => {
                 key={tag}
                 onChange={onTagsHandler}
                 label={tag}
-                checked={formData.tagsObj.tag}
+                checked={formData.tagsObj[tag]}
                 name={tag}
               />
             ))}
